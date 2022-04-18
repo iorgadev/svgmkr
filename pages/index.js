@@ -1,11 +1,5 @@
-import Canvas from "@/components/Canvas";
-import SettingsPanel from "@/components/SettingsPanel";
+import SvgMkr from "@/components/SvgMkr";
 
 export default function Home() {
-  return (
-    <div className="wrapper">
-      <Canvas />
-      <SettingsPanel />
-    </div>
-  );
+  return <SvgMkr />;
 }
