@@ -1,2 +1,8 @@
 .canvas {
+  @apply w-full h-full;
+  @apply flex items-center justify-center;
+
+  &__container {
+    // @apply border-2 border-red-500;
+  }
 }

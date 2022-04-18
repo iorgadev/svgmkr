@@ -19,4 +19,9 @@ a {
   width: 100vw;
   height: 100vh;
   display: flex;
+  @apply bg-neutral-900 text-neutral-50;
+}
+
+.icon {
+  @apply w-5 h-5;
 }
