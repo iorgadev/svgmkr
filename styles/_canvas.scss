@@ -3,6 +3,8 @@
   @apply flex items-center justify-center;
 
   &__container {
+    @apply bg-white;
+    background-image: url("/images/bg-grid.svg");
     // @apply border-2 border-red-500;
   }
 }
