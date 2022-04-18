@@ -4,6 +4,7 @@ export const settingsAtom = atom({
   width: 800,
   height: 600,
   backgroundColor: "#fff",
+  prevBackgroundColor: "#fff",
   fillColor: "#000",
   strokeColor: "#000",
   strokeWidth: 1,
