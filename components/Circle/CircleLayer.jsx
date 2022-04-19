@@ -3,5 +3,18 @@ import { settingsAtom } from "@/store/index";
 
 export default function CircleLayer({ children }) {
   const [settings] = useAtom(settingsAtom);
-  return <g fill={settings.fillColor}>{children}</g>;
+
+  if (settings.fillType === "solid") {
+    return <g fill={settings.fillColor}>{children}</g>;
+  } else {
+    return (
+      <g
+        fill="none"
+        stroke={settings.fillColor}
+        strokeWidth={settings.strokeWidth}
+      >
+        {children}
+      </g>
+    );
+  }
 }
