@@ -6,7 +6,7 @@ import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 
 export default function CanvasBackground() {
   const [settings, setSettings] = useAtom(settingsAtom);
-  const [color, setColor] = useState("#ffffff");
+  const [color, setColor] = useState(settings.backgroundColor);
   const [isHidden, setIsHidden] = useState(true);
   const colorRef = useRef();
 
