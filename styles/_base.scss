@@ -16,8 +16,8 @@ a {
 }
 
 .wrapper {
-  width: 100vw;
-  height: 100vh;
+  @apply w-screen h-screen;
+  @apply overflow-hidden;
   display: flex;
   @apply bg-neutral-900 text-neutral-50;
 }

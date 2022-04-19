@@ -1,13 +1,28 @@
 .settings {
-  @apply flex-none flex flex-col space-y-5;
+  @apply flex-none flex flex-col space-y-3;
   @apply bg-neutral-800;
   @apply w-80 p-4;
+
+  &__footer {
+    @apply flex-grow flex flex-col justify-end w-full;
+
+    &__container {
+      @apply bg-neutral-700 px-3 py-3 flex flex-col space-y-2 rounded-lg;
+    }
+
+    &__buttons {
+      @apply flex space-x-3 items-center justify-center w-full;
+      & > button {
+        @apply rounded-md;
+      }
+    }
+  }
 }
 
 .panel {
   &__header {
     @apply flex justify-between items-center;
-    @apply text-xl font-semibold uppercase;
+    @apply text-base font-black uppercase text-neutral-200;
   }
 
   & .icon {
@@ -20,9 +35,9 @@
 }
 
 .option {
-  @apply flex flex-col p-3 space-y-2;
+  @apply flex flex-col p-2 space-y-2;
   &__title {
-    @apply text-sm font-bold uppercase text-neutral-300;
+    @apply text-sm font-bold uppercase text-neutral-400;
   }
   &__container {
     @apply flex-none flex space-x-2 w-full;
@@ -35,7 +50,15 @@
   }
 
   &__icon {
-    @apply flex-none w-12 h-full bg-neutral-800 border-4 border-neutral-700 p-2 rounded-md hover:bg-neutral-700 cursor-pointer;
+    @apply flex-none w-10 h-full bg-neutral-800 border-4 border-neutral-700 p-2 rounded-md hover:bg-neutral-700 cursor-pointer;
+  }
+
+  &__icon-round {
+    @apply w-10 h-full rounded-full bg-neutral-700 flex-none p-1 text-neutral-400 border-4 border-neutral-500;
+
+    &.icon-small {
+      @apply p-2;
+    }
   }
 }
 
@@ -43,10 +66,53 @@
   @apply relative w-12 h-12 border-4 border-neutral-700 rounded-lg cursor-pointer;
   @apply flex-none;
   &__picker {
-    @apply absolute -top-6 left-10 w-60 h-60 flex items-center justify-center z-10;
+    @apply absolute top-12 left-8 w-60 h-60 flex items-center justify-center z-10;
     @apply opacity-100 transition-all duration-200;
     &.hidden {
       @apply opacity-0 pointer-events-none -z-10;
     }
+  }
+}
+
+.filltype {
+  @apply w-full h-20 border-4 border-neutral-700 rounded-lg flex;
+
+  &__option {
+    @apply w-1/2 h-full flex flex-col justify-center items-center text-neutral-500 cursor-pointer;
+    @apply border-4 border-transparent;
+    @apply transition-all duration-200;
+
+    &.left {
+      @apply rounded-lg;
+    }
+    &.right {
+      @apply rounded-lg;
+    }
+
+    &.active {
+      @apply bg-neutral-600 text-neutral-100 border-neutral-400;
+    }
+  }
+}
+
+.canvassize {
+  @apply w-full h-10;
+
+  &__container {
+    @apply w-full flex items-center justify-center space-x-2;
+  }
+
+  &__option {
+    @apply px-2 py-1 bg-neutral-700 flex flex-1 items-center space-x-1 rounded-md;
+
+    & > input {
+      @apply w-full bg-transparent;
+      @apply outline-none;
+    }
+  }
+
+  &__type,
+  &__measure {
+    @apply uppercase text-sm font-bold text-neutral-400 px-2;
   }
 }
