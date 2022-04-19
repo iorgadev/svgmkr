@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export default function Circle() {
-  const [radius, setRadius] = useState(70);
-  const [position, setPosition] = useState({ x: 110, y: 330 });
-  return <circle r={radius} cx={position.x} cy={position.y} />;
+export default function Circle({ circleRadius = 100, x = 200, y = 200 }) {
+  const [radius, setRadius] = useState(circleRadius);
+  const [position, setPosition] = useState({ x: x, y: y });
+  return <circle r={circleRadius} cx={position.x} cy={position.y} />;
 }
