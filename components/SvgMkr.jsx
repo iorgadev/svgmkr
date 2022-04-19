@@ -16,6 +16,7 @@ export default function SvgMkr() {
         <SvgContainer>
           <CircleLayer>
             <Circle />
+            <Circle circleRadius="200" x="600" y="350" />
           </CircleLayer>
         </SvgContainer>
       </Canvas>
