@@ -8,11 +8,15 @@ export default function Slider({
   min,
   max,
   onChange,
+  smallIcon = false,
+  steps = 1,
 }) {
   return (
     <Option title={title}>
       <div className="flex-none rounded-full p-1.5 bg-neutral-700">
-        <LeftIcon className="option__icon-round" />
+        <LeftIcon
+          className={`option__icon-round ${smallIcon ? `icon-small` : ``}`}
+        />
       </div>
       <div className="flex items-center justify-center option__slider">
         <input
@@ -20,6 +24,7 @@ export default function Slider({
           min={min}
           max={max}
           value={value}
+          step={steps}
           onChange={(e) => onChange(e.target.value)}
           className="w-full"
         />
