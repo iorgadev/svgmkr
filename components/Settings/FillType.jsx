@@ -53,7 +53,7 @@ export default function FillType() {
               fillType === "outline" ? `text-neutral-100` : `text-neutral-500`
             }`}
           >
-            Solid
+            Outline
           </span>
         </div>
       </div>
