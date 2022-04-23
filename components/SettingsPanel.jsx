@@ -32,14 +32,14 @@ export default function SettingsPanel() {
 
       <div className="settings__footer">
         <div className="settings__footer__container">
-          <span className="uppercase font-bold text-base text-neutral-400">
+          <span className="text-base font-bold uppercase text-neutral-400">
             Download
           </span>
           <div className="settings__footer__buttons">
-            <button className="px-4 py-2 bg-green-500 font-bold w-full">
+            <button className="w-full px-4 py-2 font-bold bg-green-500">
               SVG
             </button>
-            <button className="px-4 py-2 bg-purple-500 font-bold w-full">
+            <button className="w-full px-4 py-2 font-bold bg-purple-500">
               PNG
             </button>
           </div>
