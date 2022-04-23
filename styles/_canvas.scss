@@ -3,7 +3,7 @@
   @apply flex items-center justify-center;
 
   &__container {
-    @apply bg-white;
+    @apply bg-white flex items-center justify-center;
     background-image: url("/images/bg-grid.svg");
     // @apply border-2 border-red-500;
   }
