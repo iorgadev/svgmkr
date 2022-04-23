@@ -15,5 +15,7 @@ export const settingsAtom = atom({
   lineJoin: "round",
   count: 3,
   size: 10,
+  minSizePx: 1,
+  sizeVariation: 1,
   disparity: 0,
 });
