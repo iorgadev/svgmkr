@@ -2,7 +2,9 @@ import { atom } from "jotai";
 
 export const settingsAtom = atom({
   width: 800,
+  minWidth: 400,
   height: 600,
+  minHeight: 300,
   backgroundColor: "#3a0073",
   prevBackgroundColor: "#fff",
   fillColor: "#8000ff",
