@@ -24,7 +24,7 @@ export default function SvgContainer({ children }) {
 
   const createRandomCircle = () => {
     const maxRadius =
-      (Math.min(settings.width, settings.height) / 2) * (settings.size / 200); // reduce it by a certain percentage (a settings maybe?)
+      (Math.min(settings.width, settings.height) / 2) * (settings.size / 100); // reduce it by a certain percentage (a settings maybe?)
     const minRadius =
       settings.sizeVariation === 0
         ? maxRadius
@@ -40,7 +40,7 @@ export default function SvgContainer({ children }) {
 
   useEffect(() => {
     setCircles((prev) => []);
-    for (let i = 0; i < settings.count; i++) {
+    for (let i = 0; i < settings.count / (settings.size / 2); i++) {
       createRandomCircle();
     }
   }, [settings.count, settings.size, settings.sizeVariation]);
@@ -62,8 +62,6 @@ export default function SvgContainer({ children }) {
         />
       ) : null}
       <CircleLayer>
-        {/* <Circle />
-        <Circle circleRadius="200" x="600" y="350" /> */}
         {circles.map((circle, index) => (
           <Circle
             key={index}
