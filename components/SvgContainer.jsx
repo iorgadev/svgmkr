@@ -43,7 +43,13 @@ export default function SvgContainer({ children }) {
     for (let i = 0; i < settings.count / (settings.size / 2); i++) {
       createRandomCircle();
     }
-  }, [settings.count, settings.size, settings.sizeVariation]);
+  }, [
+    settings.width,
+    settings.height,
+    settings.count,
+    settings.size,
+    settings.sizeVariation,
+  ]);
 
   return (
     <svg
