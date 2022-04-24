@@ -29,14 +29,14 @@ export default function SettingsPanel() {
 
         <PanelSection title="Parameters">
           <CountAmount />
-          <SizeVariation />
           <SizeAmount />
+          <SizeVariation />
         </PanelSection>
       </div>
 
       <div className="settings__footer">
         <div className="settings__footer__container">
-          <span className="text-base font-bold uppercase text-neutral-400">
+          <span className="text-base font-bold uppercase text-neutral-200">
             Download
           </span>
           <div className="settings__footer__buttons">
