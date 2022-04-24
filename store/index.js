@@ -9,7 +9,7 @@ export const settingsAtom = atom({
   prevBackgroundColor: "#fff",
   fillColor: "#8000ff",
   fillType: "solid",
-  strokeColor: "#000",
+  strokeColor: "#edd9ff",
   strokeWidth: 1,
   lineCap: "round",
   lineJoin: "round",
