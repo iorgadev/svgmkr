@@ -3,6 +3,7 @@ import PanelSection from "@/components/Settings/PanelSection";
 import CanvasBackground from "@/components/Settings/CanvasBackground";
 import CanvasSize from "@/components/Settings/CanvasSize";
 import ColorFill from "@/components/Settings/ColorFill";
+import StrokeColor from "@/components/Settings/StrokeColor";
 import FillType from "./Settings/FillType";
 import CountAmount from "@/components/Settings/CountAmount";
 import SizeVariation from "@/components/Settings/SizeVariation";
@@ -11,24 +12,27 @@ import SizeAmount from "@/components/Settings/SizeAmount";
 export default function SettingsPanel() {
   return (
     <div className="settings">
-      <PanelSection title="Canvas">
-        <CanvasSize />
-      </PanelSection>
+      <div className="settings__container">
+        <PanelSection title="Canvas">
+          <CanvasSize />
+        </PanelSection>
 
-      <PanelSection title="Fill Type">
-        <FillType />
-      </PanelSection>
+        <PanelSection title="Fill Type">
+          <FillType />
+        </PanelSection>
 
-      <PanelSection title="Color">
-        <CanvasBackground />
-        <ColorFill />
-      </PanelSection>
+        <PanelSection title="Color">
+          <CanvasBackground />
+          <ColorFill />
+          <StrokeColor />
+        </PanelSection>
 
-      <PanelSection title="Parameters">
-        <CountAmount />
-        <SizeVariation />
-        <SizeAmount />
-      </PanelSection>
+        <PanelSection title="Parameters">
+          <CountAmount />
+          <SizeVariation />
+          <SizeAmount />
+        </PanelSection>
+      </div>
 
       <div className="settings__footer">
         <div className="settings__footer__container">
