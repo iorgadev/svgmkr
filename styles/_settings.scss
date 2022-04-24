@@ -12,7 +12,7 @@
     @apply flex-none flex flex-col justify-end w-full;
 
     &__container {
-      @apply bg-neutral-700 px-3 py-3 flex flex-col space-y-2 rounded-lg;
+      @apply bg-neutral-700 px-3 pt-1 pb-3 flex flex-col space-y-2 rounded-t-lg;
     }
 
     &__buttons {
@@ -25,9 +25,13 @@
 }
 
 .panel {
+  @apply mb-3;
   &__header {
     @apply flex justify-between items-center;
     @apply text-base font-black uppercase text-neutral-200;
+    &__title {
+      @apply border-l-8 border-neutral-900 pl-2;
+    }
   }
 
   &__container {
@@ -39,7 +43,7 @@
   }
 
   & .icon {
-    @apply transform rotate-180 transition-all duration-200;
+    @apply transform rotate-180 transition-all duration-200 text-neutral-500;
     @apply w-7 h-7;
     &.open {
       @apply rotate-0;
@@ -62,7 +66,6 @@
       @apply h-full bg-neutral-700 rounded-md px-3 w-full font-semibold tracking-widest text-neutral-200;
     }
   }
-
   &__input-small {
     & > input {
       @apply w-12 text-center;
@@ -74,7 +77,7 @@
   }
 
   &__icon-round {
-    @apply w-10 h-full rounded-full bg-neutral-700 flex-none p-1 text-neutral-400 border-4 border-neutral-500;
+    @apply w-7 h-full rounded-full bg-neutral-700 flex-none p-0.5 text-neutral-400 border-4 border-neutral-500;
 
     &.icon-small {
       @apply p-2;
