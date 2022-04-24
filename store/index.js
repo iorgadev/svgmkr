@@ -18,4 +18,5 @@ export const settingsAtom = atom({
   minSizePx: 1,
   sizeVariation: 1,
   disparity: 0,
+  overlap: true,
 });
