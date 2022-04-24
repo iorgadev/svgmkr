@@ -25,7 +25,9 @@ export default function PanelSection({ title, children }) {
           onClick={(e) => handleOnClick(e)}
         />
       </div>
-      {children}
+      <div className={`panel__container ${isOpen ? `open` : ``}`}>
+        {children}
+      </div>
     </div>
   );
 }
