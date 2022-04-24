@@ -8,13 +8,13 @@ export default function CanvasSize() {
         <div className="canvassize__container">
           <div className="canvassize__option">
             <div className="canvassize__type">W</div>
-            <input type="text" value="900" />
+            <input type="text" value="900" onChange={() => {}} />
             <div className="canvassize__measure">px</div>
           </div>
 
           <div className="canvassize__option">
             <div className="canvassize__type">H</div>
-            <input type="text" value="600" />
+            <input type="text" value="600" onChange={() => {}} />
             <div className="canvassize__measure">px</div>
           </div>
         </div>
