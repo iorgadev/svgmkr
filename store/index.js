@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+import { focusAtom } from "jotai/optics";
 
 export const settingsAtom = atom({
   width: 800,
@@ -20,3 +21,19 @@ export const settingsAtom = atom({
   disparity: 0,
   overlap: true,
 });
+
+// using jotai and optics, return just the width and height
+export const sizeAtom = focusAtom(settingsAtom, (optic) => optic.prop("width"));
+
+// create a derived atom that is the width and height of the settingsAtom
+export const sizeAtomDerived = atom((get) => ({
+  width: get(settingsAtom).width,
+  height: get(settingsAtom).height,
+}));
+
+export const canvasWidthAtom = focusAtom(settingsAtom, (optic) =>
+  optic.prop("width")
+);
+export const canvasHeightAtom = focusAtom(settingsAtom, (optic) =>
+  optic.prop("height")
+);
