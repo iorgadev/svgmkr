@@ -26,7 +26,7 @@
 
 .panel {
   @apply mb-3;
-  @apply bg-neutral-900 bg-opacity-50 p-1 rounded-lg;
+  // @apply bg-neutral-900 bg-opacity-50 p-1 rounded-lg;
   &__header {
     @apply flex justify-between items-center;
     @apply text-base font-black uppercase text-orange-400;
@@ -59,7 +59,7 @@
   @apply flex flex-col p-2 space-y-2;
 
   &__title {
-    @apply text-sm font-bold uppercase text-neutral-400 flex-grow;
+    @apply text-sm font-bold uppercase text-neutral-400 flex-grow flex items-center;
   }
   &__container {
     @apply flex-none flex space-x-2;
@@ -157,18 +157,19 @@
 }
 
 .toggle {
-  @apply flex items-center w-12 rounded-full bg-neutral-700 h-7 p-0.5 border-4 border-neutral-700;
+  @apply flex items-center w-12 rounded-full bg-neutral-700 h-8 p-1 border-4 border-neutral-700;
   @apply transition-all duration-200;
 
   &.on {
-    @apply border-blue-900 bg-blue-500;
+    @apply border-orange-900 bg-orange-500;
   }
 
   &__switch {
     @apply w-1/2 h-full bg-neutral-600 rounded-full transform transition-all duration-100 translate-x-0;
+    // @apply p-1;
 
     &.on {
-      @apply bg-blue-200 translate-x-full;
+      @apply bg-orange-200 translate-x-full;
     }
   }
 }
