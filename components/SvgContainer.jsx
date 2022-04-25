@@ -1,70 +1,59 @@
 import { useEffect, useState } from "react";
-import { useAtom } from "jotai";
-import { settingsAtom } from "@/store/index";
 import CircleLayer from "./Circle/CircleLayer";
 import Circle from "./Circle/Circle";
+import { useStore } from "@/store/index";
 
-// function that returns a random number between two numbers
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
 }
 
-// function that clamps a number between two numbers
-function clamp(num, min, max) {
-  return Math.min(Math.max(num, min), max);
-}
-
 export default function SvgContainer({ children }) {
-  const [settings] = useAtom(settingsAtom);
-  // generate a circle radius based on the max radius and the size variation
+  const width = useStore((state) => state.width);
+  const height = useStore((state) => state.height);
+  const size = useStore((state) => state.size);
+  const sizeVariation = useStore((state) => state.sizeVariation);
+  const count = useStore((state) => state.count);
+  const backgroundColor = useStore((state) => state.backgroundColor);
 
   const [circles, setCircles] = useState([]);
 
   const createRandomCircle = () => {
-    const maxRadius =
-      (Math.min(settings.width, settings.height) / 2) * (settings.size / 100); // reduce it by a certain percentage (a settings maybe?)
+    const maxRadius = (Math.min(width, height) / 2) * (size / 100); // reduce it by a certain percentage (a settings maybe?)
     const minRadius =
-      settings.sizeVariation === 0
+      sizeVariation === 0
         ? maxRadius
-        : parseInt(maxRadius * (1 - settings.sizeVariation / 100));
-    // create a random radius based on the maxRadius and settings.sizeVariation,
-    // and a random position based on the settings.width and settings.height
+        : parseInt(maxRadius * (1 - sizeVariation / 100));
+
     const radius = getRandomInt(minRadius, maxRadius);
-    const x = getRandomInt(-(radius / 2), settings.width + radius / 2);
-    const y = getRandomInt(-(radius / 2), settings.height + radius / 2);
+    const x = getRandomInt(-(radius / 2), width + radius / 2);
+    const y = getRandomInt(-(radius / 2), height + radius / 2);
     const circle = { radius, x, y };
     setCircles((prev) => [...prev, circle]);
   };
 
   useEffect(() => {
     setCircles((prev) => []);
-    for (let i = 0; i < settings.count / (settings.size / 2); i++) {
+    for (let i = 0; i < count / (size / 2); i++) {
       createRandomCircle();
     }
-  }, [
-    settings.width,
-    settings.height,
-    settings.count,
-    settings.size,
-    settings.sizeVariation,
-  ]);
+  }, [width, height, count, size, sizeVariation]);
 
   return (
     <svg
       id="id"
-      width={settings.width}
-      height={settings.height}
-      viewBox={`0 0 ${settings.width} ${settings.height}`}
+      width={width}
+      height={height}
+      viewBox={`0 0 ${width} ${height}`}
     >
-      {settings.backgroundColor !== "transparent" ? (
+      {backgroundColor !== "transparent" ? (
         <rect
           x="0"
           y="0"
-          width={settings.width + 2}
-          height={settings.height + 2}
-          fill={settings.backgroundColor}
+          width={width + 2}
+          height={height + 2}
+          fill={backgroundColor}
         />
       ) : null}
       <CircleLayer>

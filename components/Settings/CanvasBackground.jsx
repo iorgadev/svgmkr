@@ -1,32 +1,25 @@
-import { useState, useEffect, useRef } from "react";
-import { useAtom } from "jotai";
-import { settingsAtom } from "@/store/index";
+import { useState, useRef } from "react";
 import { HexColorPicker } from "react-colorful";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
+import { useStore } from "@/store/index";
 
 export default function CanvasBackground() {
-  const [settings, setSettings] = useAtom(settingsAtom);
-  const [color, setColor] = useState(settings.backgroundColor);
   const [isHidden, setIsHidden] = useState(true);
   const colorRef = useRef();
 
-  useEffect(() => {
-    if (!color || color === undefined) return;
-    setSettings((prev) => ({ ...prev, backgroundColor: color }));
-  }, [color]);
+  const backgroundColor = useStore((state) => state.backgroundColor);
+  const prevBackgroundColor = useStore((state) => state.prevBackgroundColor);
+  const setBackgroundColor = useStore((state) => state.setBackgroundColor);
+  const setPrevBackgroundColor = useStore(
+    (state) => state.setPrevBackgroundColor
+  );
 
   const handleClick = (e) => {
     e.preventDefault();
     const colorElement = colorRef.current;
-    // if the element clicked isn't the class "color" don't hide it
     if (e.target === colorElement) {
       setIsHidden((prev) => !prev);
     }
-  };
-
-  const handleColorChange = (value) => {
-    if (value.length < 7) setColor((prev) => settings.prevBackgroundColor);
-    else setColor((prev) => value);
   };
 
   return (
@@ -37,12 +30,10 @@ export default function CanvasBackground() {
           className="color"
           style={{
             backgroundColor: `${
-              settings.backgroundColor !== "transparent"
-                ? settings.backgroundColor
-                : "#ffffff"
+              backgroundColor !== "transparent" ? backgroundColor : "#ffffff"
             }`,
             backgroundImage: `${
-              settings.backgroundColor === "transparent"
+              backgroundColor === "transparent"
                 ? `url("/images/bg-grid.svg")`
                 : ``
             }`,
@@ -56,41 +47,31 @@ export default function CanvasBackground() {
               onClick={() => setIsHidden((prev) => true)}
             ></div>
             <HexColorPicker
-              color={settings.backgroundColor}
-              onChange={setColor}
+              color={backgroundColor}
+              onChange={setBackgroundColor}
             />
           </div>
         </div>
         <div className="option__input">
           <input
             type="text"
-            value={settings.backgroundColor}
-            onChange={(e) => setColor(e.target.value)}
+            value={backgroundColor}
+            onChange={(e) => setBackgroundColor(e.target.value)}
           />
         </div>
         <div
           className="option__icon"
-          onClick={() =>
-            setSettings((prev) => {
-              const { backgroundColor } = prev;
-              const { prevBackgroundColor } = prev;
-
-              if (backgroundColor === "transparent")
-                return {
-                  ...prev,
-                  backgroundColor: prevBackgroundColor,
-                  prevBackgroundColor: `transparent`,
-                };
-
-              return {
-                ...prev,
-                prevBackgroundColor: backgroundColor,
-                backgroundColor: `transparent`,
-              };
-            })
-          }
+          onClick={() => {
+            if (backgroundColor === "transparent") {
+              setBackgroundColor(prevBackgroundColor);
+              setPrevBackgroundColor("transparent");
+            } else {
+              setPrevBackgroundColor(backgroundColor);
+              setBackgroundColor("transparent");
+            }
+          }}
         >
-          {settings.backgroundColor !== "transparent" ? (
+          {backgroundColor !== "transparent" ? (
             <EyeIcon className="w-full h-full" />
           ) : (
             <EyeOffIcon className="w-full h-full" />

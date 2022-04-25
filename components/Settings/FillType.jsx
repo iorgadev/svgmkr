@@ -1,16 +1,9 @@
-import { useState, useEffect } from "react";
 import Option from "../Option";
-import { useAtom } from "jotai";
-import { settingsAtom } from "@/store/index";
+import { useStore } from "@/store/index";
 
 export default function FillType() {
-  const [settings, setSettings] = useAtom(settingsAtom);
-  const [fillType, setFillType] = useState(settings.fillType);
-
-  useEffect(() => {
-    if (!fillType || fillType === undefined) return;
-    setSettings((prev) => ({ ...prev, fillType }));
-  }, [fillType]);
+  const fillType = useStore((state) => state.fillType);
+  const setFillType = useStore((state) => state.setFillType);
 
   return (
     <Option>

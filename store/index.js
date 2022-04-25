@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import { focusAtom } from "jotai/optics";
+import create from "zustand";
 
 export const settingsAtom = atom({
   width: 800,
@@ -22,18 +22,39 @@ export const settingsAtom = atom({
   overlap: true,
 });
 
-// using jotai and optics, return just the width and height
-export const sizeAtom = focusAtom(settingsAtom, (optic) => optic.prop("width"));
+const useStore = create((set) => ({
+  width: 800,
+  minWidth: 400,
+  height: 600,
+  minHeight: 300,
+  backgroundColor: "#3a0073",
+  prevBackgroundColor: "#fff",
+  fillColor: "#8000ff",
+  fillType: "solid",
+  strokeColor: "#edd9ff",
+  strokeWidth: 1,
+  lineCap: "round",
+  lineJoin: "round",
+  count: 3,
+  size: 10,
+  minSizePx: 1,
+  sizeVariation: 1,
+  disparity: 0,
+  overlap: true,
 
-// create a derived atom that is the width and height of the settingsAtom
-export const sizeAtomDerived = atom((get) => ({
-  width: get(settingsAtom).width,
-  height: get(settingsAtom).height,
+  setWidth: (width) => set((state) => ({ width })),
+  setHeight: (height) => set((state) => ({ height })),
+  setBackgroundColor: (backgroundColor) =>
+    set((state) => ({ backgroundColor })),
+  setPrevBackgroundColor: (prevBackgroundColor) =>
+    set((state) => ({ prevBackgroundColor })),
+  setFillColor: (fillColor) => set((state) => ({ fillColor })),
+  setFillType: (fillType) => set((state) => ({ fillType })),
+  setStrokeColor: (strokeColor) => set((state) => ({ strokeColor })),
+  setStrokeWidth: (strokeWidth) => set((state) => ({ strokeWidth })),
+  setCount: (count) => set((state) => ({ count })),
+  setSize: (size) => set((state) => ({ size })),
+  setSizeVariation: (sizeVariation) => set((state) => ({ sizeVariation })),
 }));
 
-export const canvasWidthAtom = focusAtom(settingsAtom, (optic) =>
-  optic.prop("width")
-);
-export const canvasHeightAtom = focusAtom(settingsAtom, (optic) =>
-  optic.prop("height")
-);
+export { useStore };
