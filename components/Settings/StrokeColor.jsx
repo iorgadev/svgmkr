@@ -13,7 +13,7 @@ export default function StrokeColor() {
     e.preventDefault();
     setSettings({
       ...settings,
-      strokeWidth: e.target.value > 0 ? e.target.value : 0,
+      strokeWidth: e.target.value > 0 ? parseInt(e.target.value) : 0,
     });
   };
 
@@ -77,12 +77,15 @@ export default function StrokeColor() {
         <div className="option__input">
           <input type="text" value={settings.strokeColor} onChange={setColor} />
         </div>
-        <div className="option__input-small">
+        <div className="relative flex items-center justify-center option__input-small">
           <input
             type="text"
             value={settings.strokeWidth}
             onChange={updateStrokeWidth}
           />
+          <span className="absolute bottom-0.5 text-xs font-semibold text-neutral-400">
+            px
+          </span>
         </div>
       </div>
     </div>
