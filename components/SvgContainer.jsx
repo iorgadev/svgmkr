@@ -62,6 +62,7 @@ export default function SvgContainer({ children }) {
       width={width}
       height={height}
       viewBox={`0 0 ${width} ${height}`}
+      // style={{ transition: "all 0.1s ease-in-out" }}
     >
       {backgroundColor !== "transparent" ? (
         <rect
