@@ -42,26 +42,30 @@ export default function Canvas({ children }) {
     <div className="canvas">
       <div className="relative border-4 border-neutral-800 canvas__container">
         <div
-          className="absolute flex items-center justify-center bg-transparent rounded-full w-96 h-96 -right-48"
+          className={`absolute flex items-center justify-center bg-transparent rounded-full ${
+            isResizing ? `pointer-events-auto` : `pointer-events-none`
+          } w-96 h-96 -right-48 `}
           onMouseMove={(e) => handleMouseMove(e, "ew")}
           onMouseUp={handleMouseUp}
         >
           <div
             onMouseDown={handleMouseDown}
-            className="relative -right-0.5 flex items-center justify-center w-3 h-3 bg-neutral-600 rounded-full cursor-ew-resize"
+            className="relative -right-0.5 flex items-center justify-center w-3 h-3 bg-neutral-600 rounded-full cursor-ew-resize pointer-events-auto"
           ></div>
           <span className="absolute text-xs font-normal tracking-widest transform rotate-90 translate-x-5 text-neutral-700">
             WIDTH
           </span>
         </div>
         <div
-          className="absolute flex items-center justify-center bg-transparent rounded-full w-96 h-96 -bottom-48"
+          className={`absolute flex items-center justify-center bg-transparent rounded-full w-96 h-96 -bottom-48 ${
+            isResizing ? `pointer-events-auto` : `pointer-events-none`
+          }`}
           onMouseMove={(e) => handleMouseMove(e, "ns")}
           onMouseUp={handleMouseUp}
         >
           <div
             onMouseDown={handleMouseDown}
-            className="relative top-0.5 flex items-center justify-center w-3 h-3 bg-neutral-600 rounded-full cursor-ns-resize"
+            className="relative top-0.5 flex items-center justify-center w-3 h-3 bg-neutral-600 rounded-full cursor-ns-resize pointer-events-auto"
           ></div>
           <span className="absolute text-xs font-normal tracking-widest transform translate-y-5 text-neutral-700">
             HEIGHT
