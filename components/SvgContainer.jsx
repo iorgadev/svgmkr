@@ -1,13 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import CircleLayer from "./Circle/CircleLayer";
 import Circle from "./Circle/Circle";
 import { useStore } from "@/store/index";
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
-}
+import { useDebouncedCallback } from "use-debounce";
 
 export default function SvgContainer({ children }) {
   const width = useStore((state) => state.width);
@@ -18,7 +13,9 @@ export default function SvgContainer({ children }) {
   const backgroundColor = useStore((state) => state.backgroundColor);
   const withinCanvasBounds = useStore((state) => state.withinCanvasBounds);
 
-  const [circles, setCircles] = useState([]);
+  const shapes = useStore((state) => state.shapes);
+  const addShape = useStore((state) => state.addShape);
+  const clearShapes = useStore((state) => state.clearShapes);
 
   const createRandomCircle = () => {
     const maxRadius = (Math.min(width, height) / 2) * (size / 100); // reduce it by a certain percentage (a settings maybe?)
@@ -26,6 +23,9 @@ export default function SvgContainer({ children }) {
       sizeVariation === 0
         ? maxRadius
         : parseInt(maxRadius * (1 - sizeVariation / 100));
+
+    const getRandomInt = (min, max) =>
+      Math.floor(Math.random() * (max - min + 1)) + min;
 
     const radius = getRandomInt(minRadius, maxRadius);
 
@@ -42,18 +42,19 @@ export default function SvgContainer({ children }) {
     };
 
     let { x, y } = getRandomXY();
-
-    const circle = { radius, x, y };
-
-    setCircles((prev) => [...prev, circle]);
+    return { radius, x, y };
   };
 
-  useEffect(() => {
-    setCircles((prev) => []);
+  const debounceGenerateShapes = useDebouncedCallback(() => {
+    clearShapes();
     for (let i = 0; i < count / (size / 2); i++) {
-      createRandomCircle();
+      addShape(createRandomCircle());
     }
-  }, [width, height, count, size, sizeVariation]);
+  }, 200);
+
+  useEffect(() => {
+    debounceGenerateShapes();
+  }, [width, height, count, size, sizeVariation, withinCanvasBounds]);
 
   return (
     <svg
@@ -72,9 +73,10 @@ export default function SvgContainer({ children }) {
         />
       ) : null}
       <CircleLayer>
-        {circles.map((circle, index) => (
+        {shapes.map((circle, index) => (
           <Circle
             key={index}
+            index={index}
             circleRadius={circle.radius}
             x={circle.x}
             y={circle.y}
