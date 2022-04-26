@@ -16,6 +16,7 @@ export default function SvgContainer({ children }) {
   const sizeVariation = useStore((state) => state.sizeVariation);
   const count = useStore((state) => state.count);
   const backgroundColor = useStore((state) => state.backgroundColor);
+  const withinCanvasBounds = useStore((state) => state.withinCanvasBounds);
 
   const [circles, setCircles] = useState([]);
 
@@ -27,9 +28,23 @@ export default function SvgContainer({ children }) {
         : parseInt(maxRadius * (1 - sizeVariation / 100));
 
     const radius = getRandomInt(minRadius, maxRadius);
-    const x = getRandomInt(-(radius / 2), width + radius / 2);
-    const y = getRandomInt(-(radius / 2), height + radius / 2);
+
+    const getRandomXY = () => {
+      let x, y;
+      if (withinCanvasBounds) {
+        x = getRandomInt(radius, width - radius);
+        y = getRandomInt(radius, height - radius);
+      } else {
+        x = getRandomInt(0, width);
+        y = getRandomInt(0, height);
+      }
+      return { x, y };
+    };
+
+    let { x, y } = getRandomXY();
+
     const circle = { radius, x, y };
+
     setCircles((prev) => [...prev, circle]);
   };
 
