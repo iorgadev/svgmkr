@@ -19,6 +19,7 @@ const useStore = create((set) => ({
   sizeVariation: 1,
   disparity: 0,
   overlap: true,
+  withinCanvasBounds: true,
 
   setWidth: (width) => set((state) => ({ width })),
   setHeight: (height) => set((state) => ({ height })),
@@ -33,6 +34,11 @@ const useStore = create((set) => ({
   setCount: (count) => set((state) => ({ count })),
   setSize: (size) => set((state) => ({ size })),
   setSizeVariation: (sizeVariation) => set((state) => ({ sizeVariation })),
+
+  //Parameters
+  setOverlap: (overlap) => set((state) => ({ overlap })),
+  setWithinCanvasBounds: (withinCanvasBounds) =>
+    set((state) => ({ withinCanvasBounds })),
 }));
 
 export { useStore };
