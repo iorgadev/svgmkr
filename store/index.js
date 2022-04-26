@@ -1,6 +1,7 @@
 import create from "zustand";
 
 const useStore = create((set) => ({
+  shapes: [],
   width: 800,
   minWidth: 400,
   height: 600,
@@ -10,7 +11,7 @@ const useStore = create((set) => ({
   fillColor: "#8000ff",
   fillType: "solid",
   strokeColor: "#edd9ff",
-  strokeWidth: 1,
+  strokeWidth: 0,
   lineCap: "round",
   lineJoin: "round",
   count: 3,
@@ -21,6 +22,12 @@ const useStore = create((set) => ({
   overlap: true,
   withinCanvasBounds: true,
 
+  addShape: (shape) => {
+    set((state) => ({ shapes: [...state.shapes, shape] }));
+  },
+  clearShapes: () => {
+    set((state) => ({ shapes: [] }));
+  },
   setWidth: (width) => set((state) => ({ width })),
   setHeight: (height) => set((state) => ({ height })),
   setBackgroundColor: (backgroundColor) =>
