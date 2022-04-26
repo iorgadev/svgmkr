@@ -8,7 +8,7 @@ import FillType from "./Settings/FillType";
 import CountAmount from "@/components/Settings/CountAmount";
 import SizeVariation from "@/components/Settings/SizeVariation";
 import SizeAmount from "@/components/Settings/SizeAmount";
-import Toggle from "@/components/Option/Toggle";
+import WithinCanvasBounds from "@/components/Settings/WithinCanvasBounds";
 
 export default function SettingsPanel() {
   return (
@@ -32,10 +32,7 @@ export default function SettingsPanel() {
           <CountAmount />
           <SizeAmount />
           <SizeVariation />
-          <Toggle title="Overlap" />
-          <Toggle title="Stroke" />
-          <Toggle title="Within Bounds" />
-          <Toggle title="Within Bounds" />
+          <WithinCanvasBounds />
         </PanelSection>
       </div>
 
