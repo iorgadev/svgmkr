@@ -25,6 +25,11 @@ const useStore = create((set) => ({
   addShape: (shape) => {
     set((state) => ({ shapes: [...state.shapes, shape] }));
   },
+  updateShape: (id, x, y) => {
+    set((state) => ({
+      shapes: state.shapes.map((s, i) => (i === id ? { ...s, x, y } : s)),
+    }));
+  },
   clearShapes: () => {
     set((state) => ({ shapes: [] }));
   },
