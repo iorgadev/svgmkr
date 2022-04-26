@@ -1,11 +1,8 @@
 import React from "react";
 import Option from "@/components/Option";
-import { useAtom } from "jotai";
-import { settingsAtom } from "@/store/index";
 import { useStore } from "@/store/index";
 
 export default function CanvasSize() {
-  // const [settings] = useAtom(settingsAtom);
   const width = useStore((state) => state.width);
   const height = useStore((state) => state.height);
 
