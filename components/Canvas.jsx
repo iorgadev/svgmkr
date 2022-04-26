@@ -1,5 +1,15 @@
 import { useState } from "react";
 import { useStore } from "@/store/index";
+import {
+  CursorClickIcon,
+  ArrowsExpandIcon,
+  TrashIcon,
+  AdjustmentsIcon,
+  BookmarkIcon,
+  CloudDownloadIcon,
+  CodeIcon,
+  ColorSwatchIcon,
+} from "@heroicons/react/outline";
 
 export default function Canvas({ children }) {
   const width = useStore((state) => state.width);
@@ -40,6 +50,38 @@ export default function Canvas({ children }) {
 
   return (
     <div className="canvas">
+      <div className="canvas__menu">
+        <ul className="actions">
+          <li>
+            <CursorClickIcon />
+          </li>
+          <li>
+            <ArrowsExpandIcon />
+          </li>
+          <li>
+            <AdjustmentsIcon />
+          </li>
+          <li>
+            <TrashIcon />
+          </li>
+
+          <li>
+            <ColorSwatchIcon />
+          </li>
+        </ul>
+        <ul className="file">
+          <li>
+            <CodeIcon />
+          </li>
+          <li>
+            <BookmarkIcon />
+          </li>
+          <li>
+            <CloudDownloadIcon />
+          </li>
+        </ul>
+      </div>
+
       <div className="relative border-4 border-neutral-800 canvas__container">
         <div
           className={`absolute flex items-center justify-center bg-transparent rounded-full ${
@@ -56,6 +98,7 @@ export default function Canvas({ children }) {
             WIDTH
           </span>
         </div>
+
         <div
           className={`absolute flex items-center justify-center bg-transparent rounded-full w-96 h-96 -bottom-48 ${
             isResizing ? `pointer-events-auto` : `pointer-events-none`
@@ -71,6 +114,7 @@ export default function Canvas({ children }) {
             HEIGHT
           </span>
         </div>
+
         {children}
       </div>
     </div>

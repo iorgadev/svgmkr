@@ -1,6 +1,32 @@
 .canvas {
   @apply w-full h-full;
-  @apply flex items-center justify-center;
+  @apply flex flex-col items-center justify-center;
+
+  &__menu {
+    @apply flex justify-center space-x-5 items-center mb-2;
+
+    & ul {
+      @apply list-none flex items-center space-x-1 bg-neutral-800 p-1 rounded-lg;
+      & li {
+        @apply bg-neutral-700 p-1.5 cursor-pointer rounded-md;
+        &:hover {
+          @apply bg-neutral-600 text-orange-400;
+        }
+        & svg {
+          @apply w-7 h-7;
+        }
+      }
+    }
+    & .file {
+      @apply bg-green-900;
+      & li {
+        @apply bg-green-800;
+        &:hover {
+          @apply bg-green-700 text-orange-500;
+        }
+      }
+    }
+  }
 
   &__container {
     @apply bg-white flex items-center justify-center;
