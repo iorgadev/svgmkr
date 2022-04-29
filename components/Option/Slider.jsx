@@ -29,13 +29,13 @@ export default function Slider({
           onChange={(e) => onChange(e.target.value)}
           className="w-full"
         />
-        <div className="absolute w-full h-1.5 rounded-l-full rounded-r-full bg-neutral-700"></div>
-        <div
-          className={`absolute h-1.5 rounded-l-full rounded-r-full bg-neutral-500 flex items-center justify-end`}
+        {/* <div className="absolute w-full h-1.5 rounded-l-full rounded-r-full bg-neutral-700 pointer-events-none"></div> */}
+        {/* <div
+          className={`absolute h-1.5 rounded-l-full rounded-r-full bg-neutral-500 flex items-center justify-end pointer-events-none`}
           style={{ width: `${widthPercentage}%` }}
-        >
-          {/* <div className="relative w-5 h-5 rounded-full pointer-events-none bg-neutral-600 cursor-ew-resize"></div> */}
-        </div>
+        > */}
+        {/* <div className="relative w-5 h-5 rounded-full pointer-events-none bg-neutral-600 cursor-ew-resize"></div> */}
+        {/* </div> */}
       </div>
       <div className="flex-none rounded-full p-1.5 bg-neutral-700">
         <RightIcon className="option__icon-round" />
