@@ -5,7 +5,10 @@
 
   &__container {
     @apply flex-grow p-4;
-    @apply scrollbar-thin scrollbar-thumb-neutral-900 scrollbar-track-current overflow-y-scroll;
+    // @apply scrollbar-thin scrollbar-thumb-neutral-900 scrollbar-track-current overflow-y-scroll;
+    @apply scrollbar-thin overflow-y-scroll;
+    --scrollbar-thumb: #404040 !important;
+    --scrollbar-track: #1d1d1d !important;
   }
 
   &__footer {
